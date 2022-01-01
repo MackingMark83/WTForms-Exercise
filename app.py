@@ -5,9 +5,10 @@ from forms import AddPetForm, EditPetForm
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = "abcdef"
+app.config['SECRET_KEY'] = "jslkjsalkjdsf"
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///adopt"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
 db.create_all()
@@ -38,7 +39,7 @@ def add_pet():
         return redirect(url_for('list_pets'))
 
     else:
-        return render_template("pet_add_form.html", form=form)
+        return render_template("add_form.html", form=form)
 
 
 @app.route("/<int:pet_id>", methods=["GET", "POST"])
@@ -57,7 +58,7 @@ def edit_pet(pet_id):
         return redirect(url_for('list_pets'))
 
     else:
-        return render_template("pet_edit_form.html", form=form, pet=pet)
+        return render_template("edit_form.html", form=form, pet=pet)
 
 
 @app.route("/api/pets/<int:pet_id>", methods=['GET'])
