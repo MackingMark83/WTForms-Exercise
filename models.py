@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 
 class Pet(db.Model):
-    """Adoptable pet."""
+    """adoptable pet."""
 
     __tablename__ = "pets"
 
